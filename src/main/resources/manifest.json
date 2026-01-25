@@ -1,0 +1,18 @@
+{
+  "Name": "${pluginName}",
+  "Group": "${pluginGroup}",
+  "Version": "${pluginVersion}",
+  "Description": "${pluginDescription}",
+  "Website": "${pluginWebsite}",
+  "ServerVersion": "${hytaleServerVersion}",
+  "Authors": [
+    {
+      "Name": "${pluginAuthor1}"
+    }
+  ],
+  "Main": "${pluginEntrypoint}",
+  "IncludesAssetPack": true,
+  "DisabledByDefault": false,
+  "Dependencies": {},
+  "OptionalDependencies": {}
+}
