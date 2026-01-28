@@ -29,10 +29,19 @@ fun getGameDir(hytaleInstallDir: String?):File{
     return gameDir
 }
 fun getModsDir(project: Project): File {
-    return File(getGameDir(project),
-        "install/release/package/game/latest/Server/mods")
+    var  modsDir = File(getServerDir(project),"mods")
+    if(!modsDir.exists()) {
+        modsDir.mkdirs()
+    }
+    return modsDir
 }
 fun getServerDir(project: Project): File {
+    var  serverDir = File(getGameDir(project),
+        "install/release/package/game/latest/Server")
+    require(serverDir.exists()) { "Please set 'hytaleServerJarDir' in gradle.properties Server directory does not exist: $serverDir" }
+    return serverDir
+}
+fun getServerJarPath(project: Project): File {
 
     val hytaleServerJarDir = project.findProperty("hytaleServerJarDir")?.toString()
 
@@ -41,10 +50,10 @@ fun getServerDir(project: Project): File {
             File(hytaleServerJarDir)
         }
         else -> {
-            File(getGameDir(project),"install/release/package/game/latest/Server/HytaleServer.jar")
+            File(getServerDir(project),"HytaleServer.jar")
         }
     }
     // Server JAR inside the installation directory
-    require(serverFile.exists()) { "Please set 'hytaleInstallDir' in gradle.propertiesServer JAR does not exist: $serverFile" }
+    require(serverFile.exists()) { "Please set 'hytaleServerJarDir' in gradle.properties Server JAR does not exist: $serverFile" }
     return serverFile
 }

@@ -1,8 +1,8 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import xyz.starrybyte.hytale.assist.tasks.HytaleServerDecompileTask
 import xyz.starrybyte.hytale.assist.tasks.RunServerTask
-import xyz.starrybyte.hytale.assist.utils.getServerDir
 import xyz.starrybyte.hytale.assist.tasks.CopyJarToModsTask
+import xyz.starrybyte.hytale.assist.utils.getServerJarPath
 
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -19,10 +19,11 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
-    compileOnly(files(getServerDir(project)))
+    compileOnly(files(getServerJarPath(project)))
 }
-
-
+sourceSets.register("reference") {
+    java.srcDir(layout.buildDirectory.dir("tmp/server_decompiled"))
+}
 kotlin {
     jvmToolchain(23)
 }
@@ -39,11 +40,11 @@ tasks.jar{
 }
 
 tasks.register<RunServerTask>("runServer") {
-    dependsOn("copyPluginToModsFolder")
+    dependsOn( "decompile", "copyPluginToModsFolder")
 }
 
 tasks.register<CopyJarToModsTask>("copyPluginToModsFolder") {
-    dependsOn(tasks.named("jar"))
+    dependsOn(tasks.named("shadowJar"))
 }
 
 tasks.processResources {
@@ -71,8 +72,8 @@ tasks.withType<ShadowJar> {
     archiveBaseName.set(project.name)
     archiveVersion.set(project.version.toString())
     archiveClassifier.set("")
-    mergeServiceFiles() // Optional, recommended for plugins
-    from(tasks.processResources) // Include processed resources
+    mergeServiceFiles()
+    from(tasks.processResources)
 }
 
 // Make build task produce the shadow JAR

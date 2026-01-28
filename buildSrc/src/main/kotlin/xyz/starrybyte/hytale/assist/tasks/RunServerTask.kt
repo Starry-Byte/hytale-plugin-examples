@@ -1,9 +1,8 @@
 package xyz.starrybyte.hytale.assist.tasks
 import xyz.starrybyte.hytale.assist.utils.getModsDir
-import xyz.starrybyte.hytale.assist.utils.getServerDir
-
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.JavaExec
+import xyz.starrybyte.hytale.assist.utils.getServerJarPath
 
 abstract class RunServerTask : JavaExec() {
 
@@ -17,7 +16,7 @@ abstract class RunServerTask : JavaExec() {
     override fun exec() {
         val modsPath = getModsDir(project)
 
-        val jarFile = getServerDir(project)
+        val jarFile = getServerJarPath(project)
         // Run exactly like: java -jar hytale-server.jar
         workingDir = jarFile.parentFile
         classpath = project.files(jarFile)
@@ -28,7 +27,7 @@ abstract class RunServerTask : JavaExec() {
         val jvmArgss = project.findProperty("hytaleServerJvmArgs")?.toString()
         var jvmArgsString = when {
             jvmArgss != null && jvmArgss !="default" && jvmArgss != "" -> jvmArgss
-           else-> "-Xms1G -Xmx4G -Dfile.encoding=UTF-8"
+           else-> "-Xms1G -Xmx8G"
         }
         println("jvmArgs: $jvmArgsString")
         jvmArgsString
