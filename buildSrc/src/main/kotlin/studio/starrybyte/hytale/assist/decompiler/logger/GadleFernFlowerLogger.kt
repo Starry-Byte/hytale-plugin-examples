@@ -1,4 +1,4 @@
-package xyz.starrybyte.hytale.assist.decompiler.logger
+package studio.starrybyte.hytale.assist.decompiler.logger
 
 import org.jetbrains.java.decompiler.main.extern.IFernflowerLogger
 

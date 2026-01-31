@@ -1,5 +1,5 @@
-package xyz.starrybyte.hytale.assist.tasks
-import xyz.starrybyte.hytale.assist.utils.getModsDir
+package studio.starrybyte.hytale.assist.tasks
+import studio.starrybyte.hytale.assist.utils.getModsDir
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.nio.file.Files

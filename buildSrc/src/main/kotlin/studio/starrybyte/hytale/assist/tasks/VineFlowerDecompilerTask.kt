@@ -1,10 +1,10 @@
-package xyz.starrybyte.hytale.assist.tasks
-import xyz.starrybyte.hytale.assist.decompiler.DirectoryResultSaver
-import xyz.starrybyte.hytale.assist.decompiler.logger.GradleFernflowerLogger
+package studio.starrybyte.hytale.assist.tasks
+import studio.starrybyte.hytale.assist.decompiler.DirectoryResultSaver
+import studio.starrybyte.hytale.assist.decompiler.logger.GradleFernflowerLogger
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.*
 import org.jetbrains.java.decompiler.main.Fernflower
-import xyz.starrybyte.hytale.assist.utils.getServerJarPath
+import studio.starrybyte.hytale.assist.utils.getServerJarPath
 import java.io.File
 
 abstract class  HytaleServerDecompileTask : DefaultTask() {

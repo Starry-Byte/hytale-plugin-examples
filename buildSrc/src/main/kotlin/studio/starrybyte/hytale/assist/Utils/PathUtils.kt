@@ -1,4 +1,4 @@
-package xyz.starrybyte.hytale.assist.utils
+package studio.starrybyte.hytale.assist.utils
 
 import org.gradle.api.Project
 import java.io.File
@@ -57,3 +57,7 @@ fun getServerJarPath(project: Project): File {
     require(serverFile.exists()) { "Please set 'hytaleServerJarDir' in gradle.properties Server JAR does not exist: $serverFile" }
     return serverFile
 }
+fun getAssetsPath(project: Project): File {
+    return File(getGameDir(project),"install/release/package/game/latest/Assets.zip")
+}
+

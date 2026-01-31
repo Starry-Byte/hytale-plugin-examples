@@ -1,8 +1,8 @@
-package xyz.starrybyte.hytale.assist.tasks
-import xyz.starrybyte.hytale.assist.utils.getModsDir
+package studio.starrybyte.hytale.assist.tasks
+import studio.starrybyte.hytale.assist.utils.getModsDir
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.JavaExec
-import xyz.starrybyte.hytale.assist.utils.getServerJarPath
+import studio.starrybyte.hytale.assist.utils.getServerJarPath
 
 abstract class RunServerTask : JavaExec() {
 
