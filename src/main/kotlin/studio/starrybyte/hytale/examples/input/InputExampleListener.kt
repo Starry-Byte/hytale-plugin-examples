@@ -23,7 +23,7 @@ class InputExampleListener : PlayerPacketWatcher {
     ) {
         val playerRef = var1?:return
         val packet = var2?:return
-        if(packet.id!=290)return
+        if(packet.id != SyncInteractionChains.PACKET_ID)return
         val interactionChains = packet as SyncInteractionChains
         val updates = interactionChains.updates
         for (update in updates) {

@@ -26,9 +26,11 @@ dependencies {
     compileOnly(files(getAssetsPath(project)))
 
 }
+
 sourceSets.register("reference") {
     java.srcDir(layout.buildDirectory.dir("tmp/server_decompiled"))
 }
+
 kotlin {
     jvmToolchain(23)
 }
