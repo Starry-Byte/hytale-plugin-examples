@@ -47,7 +47,13 @@ tasks.jar{
 }
 
 tasks.register<RunServerTask>("runServer") {
-    dependsOn( "decompile", "copyPluginToModsFolder")
+    val autoDecompileHytaleServer: String by project
+    if (autoDecompileHytaleServer.toBoolean()) {
+        dependsOn( "decompile", "copyPluginToModsFolder")
+    }
+    else
+        dependsOn( "copyPluginToModsFolder")
+
 }
 
 tasks.register<CopyJarToModsTask>("copyPluginToModsFolder") {
