@@ -34,7 +34,7 @@ class InputExampleListener : PlayerPacketWatcher {
                val world = Universe.get().getWorld(worldId)?: return
                world.execute {
                    val player = pr.store.getComponent(pr, Player.getComponentType())?:return@execute
-                   val page = DynamicPage(playerRef, CustomPageLifetime.CanDismissOrCloseThroughInteraction)
+                   val page = DynamicPage(playerRef, CustomPageLifetime.CanDismissOrCloseThroughInteraction,"Pages/Test/testp.ui")
                    player.pageManager.openCustomPage(pr, pr.store,page)
 
                    val result= NPCPlugin.get().spawnNPC(pr.store,"Kweebec_Sapling",null,

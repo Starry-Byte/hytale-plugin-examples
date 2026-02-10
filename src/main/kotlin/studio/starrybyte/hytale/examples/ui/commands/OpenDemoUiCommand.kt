@@ -13,6 +13,8 @@ import studio.starrybyte.hytale.examples.ui.DynamicPage
 import javax.annotation.Nonnull
 
 class OpenDemoUiCommand : AbstractPlayerCommand("opendemoui", "sample command", false) {
+
+
     protected override fun execute(
         @Nonnull commandContext: CommandContext,
         @Nonnull store: Store<EntityStore?>,
@@ -20,8 +22,9 @@ class OpenDemoUiCommand : AbstractPlayerCommand("opendemoui", "sample command", 
         @Nonnull playerRef: PlayerRef,
         @Nonnull world: World
     ) {
+
         val player = store.getComponent(ref, Player.getComponentType())?:return
-        val page = DynamicPage(playerRef, CustomPageLifetime.CanDismissOrCloseThroughInteraction)
+        val page = DynamicPage(playerRef, CustomPageLifetime.CanDismissOrCloseThroughInteraction,"Pages/Test/test2.ui")
         world.execute {
             player.pageManager.openCustomPage(ref, store, page)
         }

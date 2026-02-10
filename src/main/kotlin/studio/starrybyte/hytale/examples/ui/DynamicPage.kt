@@ -6,11 +6,16 @@ import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder
 import com.hypixel.hytale.server.core.universe.PlayerRef
 
 class DynamicPage : BasicCustomUIPage {
-    constructor(playerRef: PlayerRef, lifetime: CustomPageLifetime) : super(playerRef, lifetime)
+    private var page: String?
+
+    constructor(playerRef: PlayerRef, lifetime: CustomPageLifetime, page:String?=null) : super(playerRef, lifetime)
+    {
+        this.page = page
+    }
 
     override fun build(var1: UICommandBuilder?) {
         val builder = var1?:return
-        builder.append("Pages/Test/test.ui")
+        builder.append(page?:"Pages/Test/test.ui")
         //builder.appendInline("hello","")
         builder.appendInline(
                 "#ElementList",
